@@ -1,0 +1,26 @@
+Course Module Arrangement (Original Text Fully Retained)
+ITSD002_L03_1490_2614Modules2614_2026 Quarter (Apr-Jun)Module Overview
+
+Week 1
+
+Topic 1 Overview: Introduction to Problem Solving includes 1. What is Problem Solving?, 1.1. Problem Classification, 2. Problem Solving Strategies, 3. Understand Problem Solving Steps, 3.1. Program Planning and Development Cycle, 3.2. Programming Language, Quiz, Activity: Problem Classification and Strategies, Discussion Topic, Activity: Identify Problem-Solving Strategy, 4. Summary.
+
+Topic 2 Overview: Algorithm, Flowchart and Pseudocode includes 1. Programming Tools, 1.1. Algorithms, 1.2. IPO Charts, 1.3. Pseudocode, 1.4. Flowcharts, 2. Control Structures, 2.1. Sequence, 2.2. Selection, 2.3. Repetition, Quiz, Activity: Programming Tools and Control Structures, Assignment, Activity: Apply Your Knowledge, 3. Summary.
+
+Topic 3 Overview: Data Types and Invariants includes 1. Invariants, 2. Data Types, 3. Abstract Data Types, Quiz, Activity: Data Type Concepts, Discussion Topic, Activity: Invariants and Data Type Concepts, 4. Summary.
+
+Week 2
+
+Topic 4 Overview: Python Programming language includes 1. Basic Python Programming, 2. Basic Python Data Structure, Assignment, Activity: Variables and Operators, Assignment, Activity: Test Your Knowledge of Basic Python Operators, 3. Summary.
+
+Topic 5 Overview: Conditions/Selections includes 1. Decision Structures, 1.1. IF Structure, 1.2. If Then Else, 1.3. If Then Else-If Else, 1.4. CASE Structure, 2. Conditional Operators, 2.1. Relational Operator, 2.2. Logical Operators, Assignment, Activity: Grade Checker - Part 1, Quiz, Activity: Grade Checker – Part 2, Assignment, Activity: Logical Statements, 3. Summary.
+
+Topic 6 Overview: Iteration/Repetition includes 1. Repetition Structure, 1.1. While, 1.2. Do While, 1.3. DO Until, 1.4. FOR, 2. Nested Loops, Assignment, Activity: Just Loop It - Part 1, Quiz, Activity: Just Loop It - Part 2, Assignment, Activity: Summation by For Loop, 3. Summary.
+
+Week 3
+
+Topic 7 Overview: Array includes 1. Array Basics, 1.1. Lists, 2. Processing Array, 2.1. Sequentially Searching an Array, 2.2. Loading/Filling an Array, 2.3. Totalling/Averaging the Values in an Array, 2.4. Finding Highest/Lowest Values in an Array, Assignment, Activity: Array Operations Output - Part 1, Quiz, Activity: Array Operations Output - Part 2, Assignment, Activity: Python Array Manipulation Exercise, 3. Summary.
+
+Topic 8 Overview: Algorithm Searching includes 1. Sequential Search, 2. Sort and Search, 3. Binary Search, Assignment, Activity: Sequential Search Practice - Part 1, Quiz, Activity: Time Complexity of Simple Algorithms, Assignment, Activity: Let’s Try Binary Search, 4. Summary.
+
+Topic 9 Overview: Sorting Data includes 1. Intuitive Sort, 2. Selection Sort, 3. Insertion Sort, 4. Bubble Sort, 5. Merge Sort, 6. Quick Sort, 7. Shell Sort, Quiz, Activity: Sorting Techniques, Assignment, Activity: Insertion Sort Challenge, 8. Summary.
