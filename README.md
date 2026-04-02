@@ -7,6 +7,7 @@
 ---
 
 **提示：**
+02.04.2026 10:39 添加Course review功能
 
 02.04.2026 8:08 网站基础功能已基本完成，缺少部分其它文档：待完善
 
@@ -17,5 +18,5 @@
 
 **更改录：**
 
-Last update date（SGT）： 02.04.2026  7：52           Editor: lau           website version: 26.1.0
+Last update date（SGT）： 02.04.2026  7：52           Editor: lau           website version: 26.1.1
 
