@@ -1,0 +1,805 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'><style type='text/css'>html {overflow-x: initial !important;}</style>
+<style type='text/css'  id="style-base">:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI Emoji", "SF Pro", sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p *, #write.first-line-indent svg * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
+.nodeLabel p { padding-right: 2px; padding-left: 2px; }
+.typora-export .nodeLabel p { padding-right: 0px; padding-left: 0px; }
+foreignobject { overflow: visible; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+li p { orphans: 1; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+</style>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&amp;subset=latin,latin-ext' type='text/css' />
+<style type='text/css'  id="style-theme_css">:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', 'SF Pro', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+/* 阅读器控制栏样式 */
+.reader-control-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f1f1f1;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 9999;
+  box-sizing: border-box;
+}
+
+/* 返回首页按钮样式 */
+.home-btn {
+  padding: 6px 16px;
+  background: #4183C4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+.home-btn:hover {
+  background: #306899;
+}
+
+/* 语言切换下拉框样式 */
+.lang-select {
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  outline: none;
+}
+.lang-select:hover {
+  border-color: #4183C4;
+}
+
+/* 背景切换按钮组 */
+.bg-switch-group {
+  display: flex;
+  gap: 8px;
+}
+.bg-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s;
+}
+.bg-btn.active {
+  border-color: #4183C4;
+}
+/* 三种背景色按钮 */
+.bg-white {
+  background: #ffffff;
+}
+.bg-cream {
+  background: #f9f7f3;
+}
+.bg-light-yellow {
+  background: #fef9e7;
+}
+
+/* 内容区域适配（避免被控制栏遮挡） */
+#write {
+  margin-top: 80px !important;
+}
+
+/* 背景色切换的body类 */
+body.bg-theme-white {
+  --bg-color: #ffffff;
+}
+body.bg-theme-cream {
+  --bg-color: #f9f7f3;
+}
+body.bg-theme-light-yellow {
+  --bg-color: #fef9e7;
+}
+/* 覆盖原有背景色变量，确保生效 */
+body {
+  background-color: var(--bg-color) !important;
+}
+</style>
+<style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
+
+<title>ca2 计划B</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h3 id='1-作业核心内容总结-assignment-core-summary'><span>1. 作业核心内容总结 (Assignment Core Summary)</span></h3><p><span>This assignment consists of two main parts: a research report on Smart Retail in Singapore and a comprehensive data analysis using a retail dataset of 600 stores. It requires the application of statistical methods including descriptive statistics, hypothesis testing (Chi-square), and multiple linear regression.</span></p><p><span>本次作业包含两个主要部分：关于新加坡智慧零售的研究报告，以及对包含600家商店的零售数据集进行全面数据分析。作业要求应用统计方法，包括描述性统计、假设检验（卡方检验）和多元线性回归。</span></p><p><span>You must submit three files: an Excel workbook with all calculations, a professional report of 1,500–2,000 words, and a PowerPoint presentation for a 15-minute oral session.</span></p><p><span>你必须提交三个文件：包含所有计算过程的 Excel 工作簿、一份 1,500–2,000 字的专业报告，以及用于 15 分钟口头汇报的 PowerPoint 演示文稿。</span></p><hr /><h3 id='2-五人小组分工建议-division-of-labor---5-members'><span>2. 五人小组分工建议 (Division of Labor - 5 Members)</span></h3><p><strong><span>方案 A：按任务性质分工 (Recommended for balanced workload)</span></strong></p><ol start='' ><li><p><strong><span>组员 1 (研究员):</span></strong><span> 负责任务 1 的智慧零售调研、撰写 2 页研究报告及管理哈佛格式参考文献。</span></p></li><li><p><strong><span>组员 2 (数据初筛师):</span></strong><span> 负责任务 2 的数据预处理、撰写预处理理由，并完成描述性统计和直方图制作。</span></p></li><li><p><strong><span>组员 3 (统计分析师):</span></strong><span> 负责任务 2 的置信区间计算和卡方检验，编写相关的分析结论。</span></p></li><li><p><strong><span>组员 4 (建模专家):</span></strong><span> 负责任务 2 的回归模型构建，识别关键属性，并进行具体的销售额预测计算。</span></p></li><li><p><strong><span>组员 5 (统筹与美化):</span></strong><span> 负责整合所有内容进专业报告（摘要/目录/结论），设计 20 页 PPT 并协调汇报演练。</span></p></li></ol><hr /><h3 id='3-作业内容对照翻译-full-assignment-content---bilingual'><span>3. 作业内容对照翻译 (Full Assignment Content - Bilingual)</span></h3><h4 id='标题与目标-title--objectives'><strong><span>标题与目标 (Title &amp; Objectives)</span></strong></h4><p><span>Diploma in Information Technology. Business Statistic with Python. Instructions for CA2 Group Assignment. April 2026 Term. Continuous Assessment 2 - Group Assignment (40%).</span></p><p><span>信息技术文凭。商业统计（Python）。CA2 小组作业指引。2026 年 4 月学期。持续评估 2 - 小组作业 (40%)。</span></p><p><span>The objective of this assignment is for students to apply statistical concepts on real-world data and write a report on their observation.</span></p><p><span>本作业的目标是让学生将统计概念应用于现实世界的数据，并撰写一份观察报告。</span></p><p><span>Students must ensure that their observation is supported by valid sources.</span></p><p><span>学生必须确保其观察结果有可靠的来源支持。</span></p><p><span>This assignment will make use of: Organising and visualising variables, Numerical Descriptive Measures, Microsoft Excel for Data Analysis, Hypothesis Tests, Simple and Multiple Linear Regression.</span></p><p><span>本作业将应用：变量整理与可视化、数值描述性度量、使用 Microsoft Excel 进行数据分析、假设检验、简单及多元线性回归。</span></p><hr /><h4 id='任务-1智慧零售研究-task-1-smart-retail-research'><strong><span>任务 1：智慧零售研究 (Task 1: Smart Retail Research)</span></strong></h4><p><span>Over the past decade, Singapore has emerged as one of Asia’s leading smart cities.</span></p><p><span>在过去十年中，新加坡已成为亚洲领先的智能城市之一。</span></p><p><span>The retail sector has undergone rapid change, particularly in Orchard Road, Marina Bay, and suburban town centres.</span></p><p><span>零售业经历了快速变革，特别是在乌节路、滨海湾及郊区市中心。</span></p><p><span>Modern retail environments increasingly rely on smart technologies such as IoT sensors, AI, mobile payment, and customer analytics.</span></p><p><span>现代零售环境日益依赖智能技术，如物联网 (IoT) 传感器、人工智能 (AI)、移动支付及客户分析。</span></p><p><span>These technologies enable retailers to monitor foot traffic, manage inventory in real time, and offer personalised promotions.</span></p><p><span>这些技术使零售商能够监测人流、实时管理库存并提供个性化促销。</span></p><p><span>DELIVERABLE: Conduct online research on smart retail in Singapore. Discuss three future applications to improve shopping experience, increase efficiency, and support urban planning. Max 2 pages. (10 marks).</span></p><p><span>交付物：对新加坡智慧零售进行在线研究。讨论三个未来应用方案，以改善购物体验、提高效率并支持城市规划。报告长度不超过 2 页。（10 分）。</span></p><hr /><h4 id='任务-2数据分析-task-2-data-analysis'><strong><span>任务 2：数据分析 (Task 2: Data Analysis)</span></strong></h4><p><span>You have joined UrbanMall Analytics Pte Ltd as a Junior Data Analyst. You must analyse operational data from 600 retail stores.</span></p><p><span>你已加入 UrbanMall Analytics Pte Ltd 担任初级数据分析师。你必须分析来自 600 家零售店的运营数据。</span></p><p><span>(a) Discuss the importance of data preprocessing and its two aspects. Preprocess the data and justify your decision. (10 marks).</span></p><p><span>(a) 讨论数据预处理的重要性及其两个方面。对数据进行预处理并说明你的决策理由。（10 分）。</span></p><p>&nbsp;</p><p><span>(b) Use Excel to compute summary statistics of </span><code>monthly_sales_sgd</code><span> grouped by </span><code>store_type</code><span>. Compare sales patterns (spread, locality, and shape) among Fashion, Electronics, and Food stores. (5 marks).</span></p><p><span>(b) 使用 Excel 按“商店类型”计算“每月销售额”的摘要统计数据。比较时装、电子产品及食品店的销售模式（离散程度、中心位置及分布形状）。（5 分）。</span></p><p>&nbsp;</p><p><span>(c) Draw and interpret a histogram of </span><code>monthly_sales_sgd</code><span>. (6 marks).</span></p><p><span>(c) 绘制并解读“每月销售额”的直方图。（6 分）。</span></p><p>&nbsp;</p><p><span>(d) Construct and interpret a 95% confidence interval for the monthly rent of stores larger than 100 sqm. (4 marks).</span></p><p><span>(d) 为面积大于 100 平方米的商店每月租金构建并解读 95% 的置信区间。（4 分）。</span></p><p>&nbsp;</p><p><span>(e) Perform a Chi-square test (5% significance level) to see if there is a relationship between </span><code>store_type</code><span> and </span><code>promotion intensity</code><span>. (10 marks).</span></p><p><span>(e) 进行卡方检验（5% 显著水平），以查看“商店类型”与“促销强度”之间是否存在关系。（10 分）。</span></p><p>&nbsp;</p><p><span>(f) Identify the 3 most relevant attributes for predicting sales. Construct a multiple linear regression model. (10 marks).</span></p><p><span>(f) 确定与预测销售额最相关的 3 个属性。构建多元线性回归模型。（10 分）。</span></p><p><span>Use your model to predict sales for a store with: 95 sqm, $15k rent, 500 visitors, 7 staff, 8 promo days, and store type is Electronics. (10 marks). </span></p><p><strong><span>简体中文:</span></strong><span> 使用你的模型预测具备以下条件的商店销售额：95平米、租金$1.5万、500人流、7名员工、8天促销、商店类型为电子类。（10 分）。</span></p><hr /><h4 id='提交要求-submission-requirements'><strong><span>提交要求 (Submission Requirements)</span></strong></h4><p><span>Part 1: Microsoft Excel workbook showing all analysis and formulas.</span></p><p><span>第一部分：显示所有分析步骤和公式的 Microsoft Excel 工作簿。</span></p><p><span>Part 2: A professional report (1,500 to 2,000 words). It must include an Executive Summary, Task 1, Task 2, and References.</span></p><p><span>第二部分：一份专业报告（1,500 至 2,000 字）。必须包含执行摘要、任务 1、任务 2 和参考文献。</span></p><p><span>Part 3: A 15-minute presentation with approximately 20 PowerPoint slides.</span></p><p><span>第三部分：15 分钟的演示汇报，包含大约 20 张 PowerPoint 幻灯片。</span></p><p><span>Deadline: 11th May 2026, 11:59 am. Use Harvard format for at least 3 references.</span></p><p><span>截止日期：2026 年 5 月 11 日上午 11:59。使用哈佛格式标注至少 3 份参考文献。</span></p><p>&nbsp;</p><hr /><p><small><span> 制作人：liu     日期：06.04.2026  </span></small></p></div></div>
+<script>
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. 创建控制栏DOM
+  const controlBar = document.createElement('div');
+  controlBar.className = 'reader-control-bar';
+  
+  // 2. 创建返回首页按钮
+  const homeBtn = document.createElement('button');
+  homeBtn.className = 'home-btn';
+  homeBtn.textContent = 'Home Page | 首頁 | 首页';
+  homeBtn.addEventListener('click', function() {
+    window.location.href = '../homepage.html'; 
+  });
+
+  // 3. 创建语言切换下拉菜单
+  const langSelect = document.createElement('select');
+  langSelect.className = 'lang-select';
+  const optSC = new Option('简体中文', 'sc');
+  const optTC = new Option('繁體中文 (香港)', 'tc');
+  langSelect.add(optSC);
+  langSelect.add(optTC);
+  
+  // 核心转换字典 (针对本作业内容的关键词)
+  const sc2tcMap = {
+    '计':'計','划':'劃','业':'業','内':'內','容':'容','总':'總','结':'結','报':'報','告':'告','智':'智','慧':'慧','零':'零售','售':'售','样':'樣','拟':'擬','统':'統','预':'預','处':'處','离':'離','测':'測','结':'結','论':'論','简':'簡','题':'題','选':'選','择':'擇','务':'務','现':'現','实':'實','应':'應','级':'級','场':'場','观':'觀','察':'察','标':'標','目':'目','变':'變','量':'量','单':'單','显':'顯','著':'著','汇':'匯','参':'參','考':'考','为':'為','历':'歷','则':'則','务':'務','组':'組','员':'員','设':'設','计':'計','演':'演','练':'練','译':'譯','项':'項','务':'務','后':'後','际':'際','简':'簡','体':'體','简':'簡','单':'單','线':'線','回':'回','归':'歸','关':'關','系':'係','预':'預','测':'測','份':'份','专':'專','书':'書','录':'錄','献':'獻','示':'示'
+    // ... 补充更多字符映射以实现全量转换
+  };
+
+  // 生成全量简繁对照表（常用汉字）
+  const s = "计划作业内容总结报告智慧零售数据预处理离散预测结论简题选择任务现实应用级场观察标题目标变量简单拟显著汇报参考员设计演练译项际简体单线回归关系预测份专书录献示";
+  const t = "計劃作業內容總結報告智慧零售數據預處理離散預測結論簡題選擇任務現實應用級場觀察標題目標變量簡單擬顯著匯報參考員設計演練譯項際繁體單線回歸關係預測份專書錄獻示";
+
+  function convertText(node, mode) {
+    if (node.nodeType === 3) { // 文本节点
+      let text = node.nodeValue;
+      if (mode === 'tc') {
+        for (let i = 0; i < s.length; i++) {
+          text = text.replace(new RegExp(s[i], 'g'), t[i]);
+        }
+      } else {
+        for (let i = 0; i < t.length; i++) {
+          text = text.replace(new RegExp(t[i], 'g'), s[i]);
+        }
+      }
+      node.nodeValue = text;
+    } else if (node.nodeType === 1) { // 元素节点
+      for (let child of node.childNodes) {
+        convertText(child, mode);
+      }
+    }
+  }
+
+  langSelect.addEventListener('change', function() {
+    convertText(document.getElementById('write'), this.value);
+  });
+  
+  // 4. 创建背景切换按钮组
+  const bgSwitchGroup = document.createElement('div');
+  bgSwitchGroup.className = 'bg-switch-group';
+  
+  const bgThemes = [
+    { cls: 'bg-theme-white', btnCls: 'bg-white', name: '白色' },
+    { cls: 'bg-theme-cream', btnCls: 'bg-cream', name: '米白' },
+    { cls: 'bg-theme-light-yellow', btnCls: 'bg-light-yellow', name: '浅黄' }
+  ];
+  
+  bgThemes.forEach((theme, index) => {
+    const bgBtn = document.createElement('button');
+    bgBtn.className = `bg-btn ${theme.btnCls}`;
+    bgBtn.title = theme.name;
+    if (index === 0) {
+      bgBtn.classList.add('active');
+      document.body.classList.add(theme.cls);
+    }
+    bgBtn.addEventListener('click', function() {
+      document.querySelectorAll('.bg-btn').forEach(btn => btn.classList.remove('active'));
+      bgThemes.forEach(t => document.body.classList.remove(t.cls));
+      this.classList.add('active');
+      document.body.classList.add(theme.cls);
+    });
+    bgSwitchGroup.appendChild(bgBtn);
+  });
+  
+  // 组装控制栏
+  controlBar.appendChild(homeBtn);
+  controlBar.appendChild(langSelect); // 添加语言下拉菜单
+  controlBar.appendChild(bgSwitchGroup);
+  const exportContent = document.querySelector('.typora-export-content');
+  document.body.insertBefore(controlBar, exportContent);
+});
+</script>
+</body>
+</html>
