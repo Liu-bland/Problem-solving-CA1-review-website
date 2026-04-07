@@ -1,0 +1,813 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'><style type='text/css'>html {overflow-x: initial !important;}</style>
+<style type='text/css'  id="style-base">:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI Emoji", "SF Pro", sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p *, #write.first-line-indent svg * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
+.nodeLabel p { padding-right: 2px; padding-left: 2px; }
+.typora-export .nodeLabel p { padding-right: 0px; padding-left: 0px; }
+foreignobject { overflow: visible; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+li p { orphans: 1; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+/* 阅读器控制栏样式 */
+.reader-control-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f1f1f1;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 9999;
+  box-sizing: border-box;
+}
+
+/* 返回首页按钮样式 */
+.home-btn {
+  padding: 6px 16px;
+  background: #4183C4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+.home-btn:hover {
+  background: #306899;
+}
+
+/* 背景切换按钮组 */
+.bg-switch-group {
+  display: flex;
+  gap: 8px;
+}
+.bg-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s;
+}
+.bg-btn.active {
+  border-color: #4183C4;
+}
+/* 三种背景色按钮 */
+.bg-white {
+  background: #ffffff;
+}
+.bg-cream {
+  background: #f9f7f3;
+}
+.bg-light-yellow {
+  background: #fef9e7;
+}
+
+/* 内容区域适配（避免被控制栏遮挡） */
+#write {
+  margin-top: 80px !important;
+}
+
+/* 背景色切换的body类 */
+body.bg-theme-white {
+  --bg-color: #ffffff;
+}
+body.bg-theme-cream {
+  --bg-color: #f9f7f3;
+}
+body.bg-theme-light-yellow {
+  --bg-color: #fef9e7;
+}
+
+/* Language switching */
+.lang-hk { display: none; }
+.lang-sc { display: inline; }
+p.lang-sc { display: block; }
+p.lang-hk { display: none; }
+
+/* Language dropdown */
+.lang-select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+  height: 32px;
+}
+.lang-select:focus { outline: none; border-color: #4183C4; }
+.lang-label {
+  font-size: 13px;
+  color: #555;
+  white-space: nowrap;
+}
+/* 覆盖原有背景色变量，确保生效 */
+body {
+  background-color: var(--bg-color) !important;
+}
+</style>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&amp;subset=latin,latin-ext' type='text/css' />
+<style type='text/css'  id="style-theme_css">:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', 'SF Pro', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+</style>
+<style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
+
+<title>COURSE REVIEW</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='course-review-|-課程復習-|-课程复习'><span>COURSE REVIEW | <span class='lang-para lang-hk'>課程復習</span><span class='lang-para lang-sc'> 课程复习</span></span></h1><hr /><h1 id='contents--|-目錄-|-目录'><span>Contents  | <span class='lang-para lang-hk'>目錄</span><span class='lang-para lang-sc'> 目录</span></span></h1><ul><li><p><a href='#topic-1----summary-problem-solving--programming-foundations'><span>Topic 1</span></a></p><ul><li><p><a href='#1-what-is-problem-solving'><span>1. What is Problem Solving?</span></a></p></li><li><p><a href='#2-problem-solving-strategies'><span>2. Problem Solving Strategies</span></a></p></li><li><p><a href='#3-understand-problem-solving-steps'><span>3. Understand Problem Solving Steps</span></a></p></li><li><p><a href='#4-summary'><span>4. Summary</span></a></p></li></ul></li><li><p><a href='#topic-2-overview-algorithm-flowchart-and-pseudocode'><span>Topic 2</span></a></p><ul><li><p><a href='#1-programming-tools'><span>1. Programming Tools</span></a></p></li><li><p><a href='#2-control-structures'><span>2. Control Structures</span></a></p></li><li><p><a href='#3-summary'><span>3. Summary</span></a></p></li></ul></li><li><p><a href='#topic-3-overview-data-types-and-invariants'><span>Topic 3</span></a></p><ul><li><p><a href='#1-invariants'><span>1. Invariants</span></a></p></li><li><p><a href='#2-data-types'><span>2. Data Types</span></a></p></li><li><p><a href='#3-abstract-data-types'><span>3. Abstract Data Types</span></a></p></li><li><p><a href='#4-summary'><span>4. Summary</span></a></p></li></ul></li></ul><p>&nbsp;</p><p>&nbsp;</p><hr /><p>&nbsp;</p><h1 id='topic-1----summary-problem-solving--programming-foundations'><strong><span>Topic 1    Summary: Problem Solving &amp; Programming Foundations</span></strong></h1><p>&nbsp;</p><h2 id='1-what-is-problem-solving'><strong><span>1. What is Problem Solving?</span></strong></h2><p><span>A problem is an obstacle between a goal and the present state , and solving it involves the process of moving from that present state to the desired goal. Identifying the problem accurately is the most critical step, as incorrect definitions can lead to a significant loss of time and capital.</span></p><p class="lang-para lang-hk"><span>問題是目標與現狀之間的障礙 ，解決問題則是從現狀過渡到理想目標的過程 。準確識別問題是關鍵步驟，因為錯誤的定義會導致時間與資金的重大損失 。 </span></p><p class="lang-para lang-sc"><span>问题是目标与现状之间的障碍 ，解决问题则是从现状过渡到理想目标的过程 。准确识别问题是关键步骤，因为错误的定义会导致时间与资金的重大损失 。</span></p><p>&nbsp;</p><h3 id='11-problem-classification'><strong><span>1.1. Problem Classification</span></strong><span> </span></h3><p><span>Problems are classified based on structure: well-defined problems have clear rules and solutions (e.g., math or soccer) , while ill-defined problems are ambiguous and often require division into sub-problems. Furthermore, knowledge-rich problems require domain expertise , whereas knowledge-lean problems can be solved using general instructions and logic. </span></p><p class="lang-para lang-hk"><span>問題根據結構進行分類：定義良好型問題具有明確的規則與方案（如數學或足球），而定義不良型問題則具有模糊性，通常需要拆解為子問題來處理 。此外，知識豐富型問題需要專業領域知識 ，而知識貧乏型問題則僅憑一般指令與邏輯即可解決 。 </span></p><p class="lang-para lang-sc"><span>问题根据结构进行分类：定义良好型问题具有明确的规则与方案（如数学或足球），而定义不良型问题则具有模糊性，通常需要拆解为子问题来处理 。此外，知识丰富型问题需要专业领域知识 ，而知识贫乏型问题则仅凭一般指令与逻辑即可解决 。</span></p><p>&nbsp;</p><h2 id='2-problem-solving-strategies'><strong><span>2. Problem Solving Strategies</span></strong><span> </span></h2><p><span>Action plans range from intuitive Brute Force (testing all possibilities) and Trial and Error to more structured methods like Analogy (applying knowledge from other domains) and Divide and Conquer (breaking complex tasks into smaller, simultaneous ones). Heuristics offer quick shortcuts based on experience but do not guarantee an optimal solution every time. </span></p><p class="lang-para lang-hk"><span>行動方案包括：直觀的暴力破解（測試所有可能性）與嘗試錯誤法 ；更具結構性的方法如類比法（應用其他領域的知識）與分治法（將複雜任務拆解為可同步處理的小型任務）。啟發法則提供基於經驗的快速捷徑，但不保證每次都能得到最佳解 。 </span></p><p class="lang-para lang-sc"><span>行动方案包括：直观的暴力破解（测试所有可能性）与尝试错误法 ；更具结构性的方法如类比法（应用其他领域的知识）与分治法（将复杂任务拆解为可同步处理的小型任务）。启发法则提供基于经验的快速捷径，但不保证每次都能得到最佳解 。</span></p><p>&nbsp;</p><h2 id='3-understand-problem-solving-steps'><strong><span>3. Understand Problem Solving Steps</span></strong><span> </span></h2><p><span>Prof. George Polya’s framework involves four key steps: understanding the problem statement , devising a plan using appropriate strategies , carrying out the plan correctly , and looking back to verify results and seek optimization. </span></p><p class="lang-para lang-hk"><span>George Polya 教授的框架包含四個關鍵步驟：理解問題陳述 、使用適當策略制定計劃 、正確執行計劃 ，以及事後回顧以驗證結果並尋求優化 。</span></p><p class="lang-para lang-sc"><span>George Polya 教授的框架包含四个关键步骤：理解问题陈述 、使用适当策略制定计划 、正确执行计划 ，以及事后回顾以验证结果并寻求优化 。</span></p><p>&nbsp;</p><h3 id='31-program-planning-and-development-cycle'><strong><span>3.1. Program Planning and Development Cycle</span></strong><span> </span></h3><p><span>Programming is the process of writing instructions to achieve a goal. This cycle includes designing the logic (using algorithms/pseudocode) , writing the code , correcting errors , testing against routines , and debugging to fix runtime issues using specialized tools. </span></p><p class="lang-para lang-hk"><span>編程是編寫指令以達成目標的過程 。此週期包括設計邏輯（使用算法/偽代碼）、編寫代碼 、糾正錯誤 、進行例行測試 ，以及使用專業工具進行偵錯以修復運行問題 。 </span></p><p class="lang-para lang-sc"><span>编程是编写指令以达成目标的过程 。此周期包括设计逻辑（使用算法/伪代码）、编写代码 、纠正错误 、进行例行测试 ，以及使用专业工具进行调试以修复运行问题 。</span></p><p><img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQbiI2TOQn9azqOcPtgmoE5PRHA4JqUyk5mlyFkTunSbXRUho3nzQNHKwrBnR_4EgZSoTYM2tMQWPplOUwuSeGznZiBEWpCQagP2aJrqPsBREtMXV8" alt="software development life cycle，AI 生成"></p><p><span>Shutterstock</span></p><p>&nbsp;</p><h3 id='32-programming-language'><strong><span>3.2. Programming Language</span></strong><span> </span></h3><p><span>Languages are divided into three types: Machine language (binary 0s and 1s, fastest execution) , Assembly language (uses mnemonics, moderate speed) , and High-level languages (hardware-independent and user-friendly, e.g., Python/Java) which require compilers for conversion. </span></p><p class="lang-para lang-hk"><span>語言分為三類：機器語言（二進制 0 和 1，執行速度最快）、匯編語言（使用助記符，速度中等）及高級語言（獨立於硬件且易於使用，如 Python/Java），後者需要編譯器進行轉換 。 </span></p><p class="lang-para lang-sc"><span>语言分为三类：机器语言（二进制 0 和 1，执行速度最快）、汇编语言（使用助记符，速度中等）及高级语言（独立于硬件且易于使用，如 Python/Java），后者需要编译器进行转换 。</span></p><p>&nbsp;</p><h2 id='4-summary'><strong><span>4. Summary</span></strong><span> </span></h2><p><span>Effective program development utilizes tools like flowcharts and pseudocode to create blueprints before coding. Utilizing structures such as sequence, selection (decision-making), and repetition (looping) ensures the code is flexible and efficient. </span></p><p class="lang-para lang-hk"><span>高效的程序開發在編碼前會利用流程圖與偽代碼構建藍圖 。通過順序、選擇（決策）及重複（循環）等結構，確保代碼具備靈活性與高效性 。 </span></p><p class="lang-para lang-sc"><span>高效的程序开发在编码前会利用流程图与伪代码构建蓝图 。通过顺序、选择（决策）及重复（循环）等结构，确保代码具备灵活性与高效性 。</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><hr /><h1 id='topic-2-overview-algorithm-flowchart-and-pseudocode'><span>Topic 2 Overview: Algorithm, Flowchart and Pseudocode</span></h1><hr /><h2 id='1-programming-tools'><strong><span>1. Programming Tools</span></strong></h2><p><span>Programming tools are essential for software engineers to move from a present state to a goal state by accurately identifying problems and designing a logical foundation before coding. The planning phase defines the program flow using specialized tools, helping to choose the right language (machine, assembly, or high-level) and identify potential loopholes early.  </span></p><p class="lang-para lang-hk"><span>編程工具： 編程工具對軟件工程師至關重要，透過準確識別問題並在編碼前設計邏輯基礎，實現從現狀到目標狀態的轉化。 規劃階段利用專業工具定義程序流程，有助於選擇合適的語言（機器語言、匯編語言或高級語言）並及早發現潛在漏洞。</span></p><p class="lang-para lang-sc"><span>编程工具： 编程工具对软件工程师至关重要，通过准确识别问题并在编码前设计逻辑基础，实现从现状到目标状态的转化。 规划阶段利用专业工具定义程序流程，有助于选择合适的语言（机器语言、汇编语言或高级语言）并及早发现潜在漏洞。 </span></p><p>&nbsp;</p><h3 id='11-algorithms'><strong><span>1.1. Algorithms</span></strong><span> </span></h3><p><span>An algorithm is a finite, unambiguous set of step-by-step instructions (starting with &quot;Start&quot; and ending with &quot;Stop&quot;) designed to guide a programmer through a specific task without being tied to a specific syntax. Effective algorithms must be detailed regarding inputs, outputs, and decision-making behavior to ensure consistent, legitimate results. </span></p><p class="lang-para lang-hk"><span>演算法： 演算法是一組有限且明確的逐步指令（以「開始」起點並以「停止」終結），旨在引導程序員完成特定任務，而不受特定語法的限制。 有效的演算法必須在輸入、輸出及決策行為方面具備詳細描述，以確保獲得一致且合法的結果。  </span></p><p class="lang-para lang-sc"><span>算法： 算法是一组有限且明确的逐步指令（以“开始”起点并以“停止”终结），旨在引导程序员完成特定任务，而不受特定语法的限制。 有效的算法必须在输入、输出及决策行为方面具备详细描述，以确保获得一致且合法的结果。 </span></p><p>&nbsp;</p><h3 id='12-ipo-charts'><strong><span>1.2. IPO Charts</span></strong><span> </span></h3><p><span>The Input-Process-Output (IPO) chart is a systematic tool used to understand problem statements by identifying the necessary input variables, the required processing actions, and the resulting output solutions. These tables use generalized language to build a bridge between the problem understanding and the development of a formal algorithm.  </span></p><p class="lang-para lang-hk"><span>IPO 圖表： 輸入-處理-輸出 (IPO) 圖表是一種系統化工具，透過識別必要的輸入變量、所需的處理動作以及最終的輸出方案，來幫助理解問題陳述。 這些圖表使用通用語言，在理解問題與開發正式演算法之間建立橋樑。</span></p><p class="lang-para lang-sc"><span>IPO 图表： 输入-处理-输出 (IPO) 图表是一种系统化工具，通过识别必要的输入变量、所需的处理动作以及最终的输出方案，来帮助理解问题陈述。 这些图表使用通用语言，在理解问题与开发正式算法之间建立桥梁。 </span></p><p>&nbsp;</p><h3 id='13-pseudocode'><strong><span>1.3. Pseudocode</span></strong><span> </span></h3><p><span>Pseudocode is a language-independent tool that imitates actual programming instructions using keywords (like DECLARE, IF, REPEAT) to describe an algorithm&#39;s logic. It is easier to modify than actual code and serves as a direct blueprint for final program development, though its lack of standard syntax can be challenging for very large programs. </span></p><p class="lang-para lang-hk"><span>偽代碼： 偽代碼是一種獨立於語言的工具，利用關鍵字（如 DECLARE、IF、REPEAT）模仿實際編程指令來描述演算法邏輯。 它比實際代碼更易於修改，可作為最終程序開發的直接藍圖，但對於極大型程序而言，缺乏標準語法可能會帶來挑戰。</span></p><p class="lang-para lang-sc"><span>伪代码： 伪代码是一种独立于语言的工具，利用关键字（如 DECLARE、IF、REPEAT）模仿实际编程指令来描述算法逻辑。 它比实际代码更易于修改，可作为最终程序开发的直接蓝图，但对于极大型程序而言，缺乏标准语法可能会带来挑战。 </span></p><p>&nbsp;</p><h3 id='14-flowcharts'><strong><span>1.4. Flowcharts</span></strong><span> </span></h3><p><span>A flowchart is a visual diagram that uses standardized shapes (like boxes for processes and diamonds for decisions) and flowlines to represent the sequential logic of an algorithm from top to bottom. It serves as excellent documentation for sharing logic among developers, though creating them manually for massive programs can be time-consuming. </span></p><p class="lang-para lang-hk"><span>流程圖： 流程圖是一種視覺化圖表，使用標準化形狀（如代表處理的矩形和代表決策的菱形）以及流線，從上到下呈現演算法的順序邏輯。 它是開發者之間共享邏輯的優良文檔，但對於龐大程序而言，手動繪製可能非常耗時。</span></p><p class="lang-para lang-sc"><span>流程图： 流程图是一种可视化图表，使用标准化形状（如代表处理的矩形和代表决策的菱形）以及流线，从上到下呈现算法的顺序逻辑。 它是开发者之间共享逻辑的优良文档，但对于庞大程序而言，手动绘制可能非常耗时。 </span></p><p>&nbsp;</p><h2 id='2-control-structures'><strong><span>2. Control Structures</span></strong><span> </span></h2><p><span>Regardless of the language, modern program logic relies on three fundamental control structures—sequence, selection, and repetition—to manage complex decision-making and flow control.  </span></p><p class="lang-para lang-hk"><span>控制結構： 無論使用何種語言，現代程序邏輯都依賴三種基本的控制結構——順序、選擇與重複——來管理複雜的決策與流程控制。 </span></p><p class="lang-para lang-sc"><span>控制结构： 无论使用何种语言，现代程序逻辑都依赖三种基本的控制结构——顺序、选择与重复——来管理决策与流程控制。 </span></p><p>&nbsp;</p><h3 id='21-sequence'><strong><span>2.1. Sequence</span></strong><span> </span></h3><p><span>Sequence is the default programming mode where statements are executed one after another in a specific order, creating a simple linear logical flow. While straightforward, it cannot handle complex tasks requiring conditional branches or repeated actions.  </span></p><p class="lang-para lang-hk"><span>順序結構： 順序結構是默認的編程模式，語句按特定順序逐一執行，形成簡單的線性邏輯流。 雖然直觀，但它無法處理需要條件分支或重複動作的複雜任務。  </span></p><p class="lang-para lang-sc"><span>顺序结构： 顺序结构是默认的编程模式，语句按特定顺序逐一执行，形成简单的线性逻辑流。 虽然直观，但它无法处理需要条件分支或重复动作的复杂任务。 </span></p><p>&nbsp;</p><h3 id='22-selection'><strong><span>2.2. Selection</span></strong><span> </span></h3><p><span>Selection structures, such as &quot;If-else&quot; statements, act as flow control mechanisms that alter the program path based on specific variable conditions. This allows the program to choose between alternate paths, enabling dynamic decision-making during execution. </span></p><p class="lang-para lang-hk"><span>選擇結構： 選擇結構（如 &quot;If-else&quot; 語句）充當流程控制機制，根據特定變量條件改變程序路徑。 這允許程序在備選路徑之間做出選擇，從而在執行過程中實現動態決策。  </span></p><p class="lang-para lang-sc"><span>选择结构： 选择结构（如 &quot;If-else&quot; 语句）充当流程控制机制，根据特定变量条件改变程序路径。 这允许程序在备选路径之间做出选择，从而在执行过程中实现动态决策。 </span></p><p>&nbsp;</p><h3 id='23-repetition'><strong><span>2.3. Repetition</span></strong><span> </span></h3><p><span>Repetition (iteration or looping) allows specific blocks of code to execute multiple times based on a given condition, using structures like &quot;While&quot; or &quot;For&quot; loops. Care must be taken to avoid infinite loops, where statements execute indefinitely without reaching a termination point.  </span></p><p class="lang-para lang-hk"><span>重複結構： 重複結構（迭代或循環）允許特定代碼塊根據給定條件多次執行，常見結構包括 &quot;While&quot; 或 &quot;For&quot; 循環。 必須注意避免無限循環，即語句在未達到終止點的情況下永無止境地執行。</span></p><p class="lang-para lang-sc"><span>重复结构： 重复结构（迭代或循环）允许特定代码块根据给定条件多次执行，常见结构包括 &quot;While&quot; 或 &quot;For&quot; 循环。 必须注意避免无限循环，即语句在未达到终止点的情况下永无止境地执行。 </span></p><p>&nbsp;</p><h2 id='3-summary'><strong><span>3. Summary</span></strong><span> </span></h2><p><span>In conclusion, programming is a sequential development process where tools like IPO charts and flowcharts provide a blueprint to identify loopholes before coding starts. By integrating sequence, selection, and repetition, programmers gain the flexibility to handle complex conditional execution and efficient program flow. </span></p><p class="lang-para lang-hk"><span>總結： 總之，編程是一個順序開發過程，其中 IPO 圖表和流程圖等工具在編碼開始前提供了藍圖以識別漏洞。 透過整合順序、選擇與重複結構，程序員獲得了處理複雜條件執行與高效程序流的靈活性。  </span></p><p class="lang-para lang-sc"><span>总结： 总之，编程是一个顺序开发过程，其中 IPO 图表和流程图等工具在编码开始前提供了蓝图以识别漏洞。 通过整合顺序、选择与重复结构，程序员获得了处理复杂条件执行与高效程序流的灵活性。 </span></p><p>&nbsp;</p><hr /><p>&nbsp;</p><h1 id='topic-3-overview-data-types-and-invariants'><span>Topic 3 Overview: Data Types and Invariants</span></h1><hr /><h2 id='1-invariants'><strong><span>1. Invariants</span></strong><span> </span></h2><p><span>Invariants are logical assumptions or conditions that remain true before and after the execution of specific code segments, such as loops. They are common to all programming languages and serve as critical tools for debugging, ensuring program output accuracy, and achieving error-free programming by asserting state consistency. </span></p><p class="lang-para lang-hk"><span>不變量： 不變量是邏輯假設或條件，在特定代碼段（如循環）執行前後均保持不變 。它們通用於所有編程語言，是偵錯、確保程序輸出準確性以及通過斷言狀態一致性來實現無錯誤編程的重要工具 。 </span></p><p class="lang-para lang-sc"><span>不变量： 不变量是逻辑假设或条件，在特定代码段（如循环）执行前后均保持不变 。它们通用语所有编程语言，是调试、确保程序输出准确性以及通过断言状态一致性来实现无错误编程的重要工具 。</span></p><p>&nbsp;</p><h2 id='2-data-types'><strong><span>2. Data Types</span></strong><span> </span></h2><p><span>Data types define the nature of data and how languages behave in typical situations; they are broadly categorized into primitive (non-abstract/system-defined) and non-primitive (abstract/user-defined) types. While different languages may use varied keywords, these fundamental structures provide the necessary flexibility to implement complex real-life logic within a program. 資料類型： 資料類型定義了數據的性質以及語言在典型情況下的行為；它們大致分為原始類型（非抽象/系統定義）和非原始類型（抽象/用戶定義） 。雖然不同的語言可能使用不同的關鍵字，但這些基礎結構為在程序中實現複雜的現實邏輯提供了必要的靈活性 。 </span></p><p class="lang-para lang-sc"><span>数据类型： 数据类型定义了数据的性质以及语言在典型情况下的行为；它们大致分为原始类型（非抽象/系统定义）和非原始类型（抽象/用户定义） 。虽然不同的语言可能使用不同的关键字，但这些基础结构为在程序中实现复杂的现实逻辑提供了必要的灵活性 。</span></p><p>&nbsp;</p><p><strong><span>2.1. Primitive Data Types</span></strong><span> </span></p><p><span>Primitive data types are pre-defined fundamental structures whose behavior cannot be modified by the programmer. They are built into almost all languages and are optimized for faster execution compared to non-primitive types, serving simple operations like basic arithmetic. </span></p><p class="lang-para lang-hk"><span>原始資料類型： 原始資料類型是預定義的基礎結構，程序員無法修改其行為 。它們內置於幾乎所有語言中，與非原始類型相比，其執行速度經過優化，適用於基本的算術運算等簡單操作 。</span></p><p class="lang-para lang-sc"><span>原始数据类型： 原始数据类型是预定义的基础结构，程序员无法修改其行为 。它们内置于几乎所有语言中，与非原始类型相比，其执行速度经过优化，适用于基本的算术运算等简单操作 。</span></p><p>&nbsp;</p><p><strong><span>2.2. Integer</span></strong><span> </span></p><p><span>Integers represent positive or negative whole numbers, including zero, but do not support fractional values. Due to their fast execution speed, they are widely used for counting and maintaining program flow in loops. </span></p><p class="lang-para lang-hk"><span>整數： 整數代表正或負的整數（包括零），但不支持小數值 。由於其執行速度快，被廣泛用於循環中的計數和維持程序流程 。 </span></p><p class="lang-para lang-sc"><span>整数： 整数代表正或负的整数（包括零），但不支持小数值 。由于其执行速度快，被广泛用于循环中的计数和维持程序流程 。</span></p><p>&nbsp;</p><p><strong><span>2.3. Float</span></strong><span> </span></p><p><span>Floats are numeric types used to store fractional or decimal numbers in memory using single or double-precision binary formats. They are essential for systems requiring high processing capacity to handle extremely small or large numbers. </span></p><p class="lang-para lang-hk"><span>浮點數： 浮點數是用於存儲分數或小數的數值類型，在內存中使用單精度或雙精度二進制格式表示 。對於需要高處理能力以處理極小或極大數值的系統而言，它們至關重要 。</span></p><p class="lang-para lang-sc"><span>浮点数： 浮点数是用于存储分数或小数的数值类型，在内存中使用单精度或双精度二进制格式表示 。对于需要高处理能力以处理极小或极大数值的系统而言，它们至关重要 。</span></p><p>&nbsp;</p><p><strong><span>2.4. Boolean</span></strong><span> </span></p><p><span>The Boolean data type supports only two logical values: &#39;0&#39; (false) and &#39;1&#39; (true). It is primarily used in conditional statements to control the program&#39;s execution flow and develop Boolean logic like &#39;AND&#39; and &#39;OR&#39;. </span></p><p class="lang-para lang-hk"><span>布林值： 布林資料類型僅支持兩個邏輯值：「0」（假）和「1」（真） 。它主要用於條件語句中以控制程序的執行流，並開發如「與」（AND）和「或」（OR）的布林邏輯 。</span></p><p class="lang-para lang-sc"><span>布尔值： 布尔数据类型仅支持两个逻辑值：“0”（假）和“1”（真） 。它主要用于条件语句中以控制程序的执行流，并开发如“与”（AND）和“或”（OR）的布尔逻辑 。</span></p><p>&nbsp;</p><p><strong><span>2.5. Character</span></strong><span> </span></p><p><span>The character data type stores a single symbol, letter, or number, typically requiring only one byte of memory. In programming, character values are traditionally enclosed in single quotes (e.g., &#39;A&#39;). </span></p><p class="lang-para lang-hk"><span>字元： 字元資料類型存儲單個符號、字母或數字，通常僅需一個字節的內存 。在編程中，字元值傳統上用單引號括起來（例如 &#39;A&#39;） 。 </span></p><p class="lang-para lang-sc"><span>字符： 字符数据类型存储单个符号、字母或数字，通常仅需一个字节的内存 。在编程中，字符值传统上用单引号括起来（例如 &#39;A&#39;） 。</span></p><p>&nbsp;</p><p><strong><span>2.6. String</span></strong><span> </span></p><p><span>A string is an extension of the character type, functioning as a sequence or array of characters. While characters use single quotes, strings are represented by double quotes and can include text, numbers, and special symbols. </span></p><p class="lang-para lang-hk"><span>字串： 字串是字元類型的擴展，作為字元的序列或數組運行 。字元使用單引號，而字串則由雙引號表示，並可包含文本、數字和特殊符號 。 </span></p><p class="lang-para lang-sc"><span>字符串： 字符串是字符类型的扩展，作为字符的序列或数组运行 。字符使用单引号，而字符串则由双引号表示，并可包含文本、数字和特殊符号 。</span></p><p>&nbsp;</p><h2 id='3-abstract-data-types'><strong><span>3. Abstract Data Types</span></strong><span> </span></h2><p><span>Abstract Data Types (ADTs) are user-defined structures where the behavior is determined by specific attributes and functions. They facilitate code reuse and compactness, including types like enums, arrays, linked lists, and stacks. </span></p><p class="lang-para lang-hk"><span>抽象資料類型： 抽象資料類型 (ADT) 是用戶定義的結構，其行為由特定的屬性和函數決定 。它們有助於代碼重用和精簡，包括枚舉、數組、鏈表和堆棧等類型 。 </span></p><p class="lang-para lang-sc"><span>抽象数据类型： 抽象数据类型 (ADT) 是用户定义的结构，其行为由特定的属性和函数决定 。它们有助于代码重用和精简，包括枚举、数组、链表和堆栈等类型 。</span></p><p>&nbsp;</p><p><strong><span>3.1. Enumerated (Enum)</span></strong><span> </span></p><p><span>The Enumerated (Enum) type allows programmers to assign meaningful names to unique integer values for better code readability. It is ideal for storing sets of unique, non-repeating items like days of the week or colors. </span></p><p class="lang-para lang-hk"><span>枚舉 (Enum)： 枚舉類型允許程序員為唯一的整數值分配具備意義的名稱，以提高代碼的可讀性 。它非常適合存儲一組唯一且不重複的項目，如星期幾或顏色 。 </span></p><p class="lang-para lang-sc"><span>枚举 (Enum)： 枚举类型允许程序员为唯一的整数值分配具备意义的名称，以提高代码的可读性 。它非常适合存储一组唯一且不重复的项目，如星期几或颜色 。</span></p><p>&nbsp;</p><p><strong><span>3.2. Array</span></strong><span> </span></p><p><span>An array is a collection of elements of the same data type stored in a specific order, similar to a mathematical vector. They can be single-dimensional (rows/columns) or multidimensional (matrices), and elements are accessed via index numbers. </span></p><p class="lang-para lang-hk"><span>數組： 數組是相同資料類型的元素按特定順序排列的集合，類似於數學中的向量 。它們可以是單維（行/列）或多維（矩陣），並通過索引編號訪問其中的元素 。 </span></p><p class="lang-para lang-sc"><span>数组： 数组是相同数据类型的元素按特定顺序排列的集合，类似于数学中的向量 。它们可以是单维（行/列）或多维（矩阵），并通过索引编号访问其中的元素 。</span></p><p>&nbsp;</p><h2 id='4-summary-2'><strong><span>4. Summary</span></strong><span> </span></h2><p><span>Data structures and invariants are integral to programming; while data types provide implementation flexibility, invariants ensure logical correctness during execution. Failure to maintain invariants, such as in sorting algorithms like bubble sort, directly results in incorrect program output. </span></p><p class="lang-para lang-hk"><span>總結： 數據結構與不變量是編程中不可或缺的部分；資料類型提供了實現的靈活性，而不變量則確保了執行過程中的邏輯正確性 。若未能維持不變量（例如在冒泡排序等算法中），將直接導致程序輸出錯誤 。 </span></p><p class="lang-para lang-sc"><span>总结： 数据结构与不变量是编程中不可或缺的部分；数据类型提供了实现的灵活性，而不变量则确保了执行过程中的逻辑正确性 。若未能维持不变量（例如在冒泡排序等算法中），将直接导致程序输出错误 。</span></p><p>&nbsp;</p><hr /></div></div>
+<script>
+    // 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. 创建控制栏DOM
+  const controlBar = document.createElement('div');
+  controlBar.className = 'reader-control-bar';
+  
+  // 2. 创建返回首页按钮
+  const homeBtn = document.createElement('button');
+  homeBtn.className = 'home-btn';
+  homeBtn.innerHTML = "Home Page | <span class='lang-para lang-hk' style='display:none'>首頁</span><span class='lang-para lang-sc'>首页</span>";
+  // 替换此处的首页地址为实际的首页URL
+  homeBtn.addEventListener('click', function() {
+    window.location.href = 'homepage.html'; // 需修改为真实首页地址
+  });
+  
+  // 3. 创建背景切换按钮组
+  const bgSwitchGroup = document.createElement('div');
+  bgSwitchGroup.className = 'bg-switch-group';
+  
+  // 定义三种背景配置
+  const bgThemes = [
+    { cls: 'bg-theme-white', btnCls: 'bg-white', name: '白色' },
+    { cls: 'bg-theme-cream', btnCls: 'bg-cream', name: '米白' },
+    { cls: 'bg-theme-light-yellow', btnCls: 'bg-light-yellow', name: '浅黄' }
+  ];
+  
+  // 生成背景按钮
+  bgThemes.forEach((theme, index) => {
+    const bgBtn = document.createElement('button');
+    bgBtn.className = `bg-btn ${theme.btnCls}`;
+    bgBtn.title = theme.name;
+    // 默认选中第一个（白色）
+    if (index === 0) {
+      bgBtn.classList.add('active');
+      document.body.classList.add(theme.cls);
+    }
+    // 点击切换背景
+    bgBtn.addEventListener('click', function() {
+      // 移除所有active和背景类
+      document.querySelectorAll('.bg-btn').forEach(btn => btn.classList.remove('active'));
+      bgThemes.forEach(t => document.body.classList.remove(t.cls));
+      // 添加当前选中的
+      this.classList.add('active');
+      document.body.classList.add(theme.cls);
+    });
+    bgSwitchGroup.appendChild(bgBtn);
+  });
+  
+
+  // 4. 创建语言切换下拉菜单
+  const langLabel = document.createElement('span');
+  langLabel.className = 'lang-label';
+  langLabel.textContent = '語言 / 语言:';
+
+  const langSelect = document.createElement('select');
+  langSelect.className = 'lang-select';
+  langSelect.innerHTML = `
+    <option value="sc">简体中文</option>
+    <option value="hk">繁體中文（香港）</option>
+  `;
+
+  // Default: show SC, hide HK
+  document.querySelectorAll('.lang-sc').forEach(el => el.style.display = '');
+  document.querySelectorAll('.lang-hk').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('p.lang-sc').forEach(el => el.style.display = 'block');
+
+  langSelect.addEventListener('change', function() {
+    const lang = this.value;
+    if (lang === 'hk') {
+      document.querySelectorAll('p.lang-hk, span.lang-hk').forEach(el => el.style.display = '');
+      document.querySelectorAll('p.lang-sc, span.lang-sc').forEach(el => el.style.display = 'none');
+      // Update p display correctly
+      document.querySelectorAll('p.lang-hk').forEach(el => el.style.display = 'block');
+    } else {
+      document.querySelectorAll('p.lang-sc, span.lang-sc').forEach(el => el.style.display = '');
+      document.querySelectorAll('p.lang-hk, span.lang-hk').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('p.lang-sc').forEach(el => el.style.display = 'block');
+    }
+  });
+
+  // 组装控制栏
+  controlBar.appendChild(homeBtn);
+  controlBar.appendChild(bgSwitchGroup);
+  controlBar.appendChild(langLabel);
+  controlBar.appendChild(langSelect);
+  // 插入到页面顶部（typora-export-content之前）
+  const exportContent = document.querySelector('.typora-export-content');
+  document.body.insertBefore(controlBar, exportContent);
+});
+</script>
+</body>
+</html>
